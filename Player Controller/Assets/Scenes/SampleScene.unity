@@ -243,7 +243,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -115.23176, w: 0}
+  m_margin: {x: 0, y: 0, z: -405.24628, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1215,6 +1215,12 @@ MonoBehaviour:
   invert_factor_x: 1
   invert_factor_y: 1
   sensitivity: 0.43
+  max_speed: 6
+  acceleration: 60
+  gravity: 20
+  stop_speed: 0.5
+  jump_impulse: 10
+  friction: 4
 --- !u!114 &1996856865
 MonoBehaviour:
   m_ObjectHideFlags: 0

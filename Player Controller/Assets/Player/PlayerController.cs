@@ -54,8 +54,41 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //debug 
+        debug_text.text = "Wish Dir: " + wish_dir.ToString();
+        debug_text.text += "\nPlayer Velocity: " + player_velocity.ToString();
+        debug_text.text += "\nPlayer Speed: " + new Vector3(player_velocity.x, 0, player_velocity.z).magnitude.ToString();
+        debug_text.text += "\nGrounded: " + grounded.ToString();
+
         Look();
 
+    }
+
+    private void FixedUpdate()
+    {
+        //find wish dir 
+        wish_dir = transform.right * move_input.x + transform.forward * move_input.y;
+        wish_dir = wish_dir.normalized;
+
+        grounded = character_controller.isGrounded; 
+        if(grounded)
+        {
+            player_velocity = MoveGround(wish_dir, player_velocity); 
+        }
+        else
+        {
+            player_velocity = MoveAir(wish_dir, player_velocity);
+        }
+
+        //Gravity
+        player_velocity.y -= gravity * Time.deltaTime;
+        if (grounded && player_velocity.y < 0) //cap y velocity on gorund 
+        {
+            player_velocity.y = -2; 
+        }
+
+        character_controller.Move(player_velocity * Time.deltaTime); 
     }
     public void GetLookInput(InputAction.CallbackContext context)
     {
@@ -64,7 +97,7 @@ public class PlayerController : MonoBehaviour
     }
     public void GetMoveInput(InputAction.CallbackContext context)
     {
-        look_input = context.ReadValue<Vector2>();
+        move_input = context.ReadValue<Vector2>();
 
     }
     public void GetJumpInput(InputAction.CallbackContext context)
@@ -89,7 +122,7 @@ public class PlayerController : MonoBehaviour
     {
         if(grounded)
         {
-            //DO THIS LATER XOXO
+            player_velocity.y = jump_impulse; 
         }
     }
 
