@@ -356,8 +356,8 @@ Transform:
   m_GameObject: {fileID: 418415427}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.1239, y: 2.7346, z: 9.48}
+  m_LocalScale: {x: 6.181389, y: 1.0257124, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 523336025}
@@ -539,7 +539,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573120699}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &573120702
 Camera:
   m_ObjectHideFlags: 0
@@ -710,7 +710,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -875,13 +875,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115807152}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.34382454, w: 0.939034}
-  m_LocalPosition: {x: -1.5271387, y: -1.2914517, z: 2.2899997}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.48457626, y: 0.17742617, z: 0.2945085, w: 0.80434483}
+  m_LocalPosition: {x: -1.47, y: -1.36, z: 9.68}
+  m_LocalScale: {x: -3.38, y: 9.88, z: -5.43}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 523336025}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 42.456, y: 50.689, z: 61.07}
 --- !u!1 &1138626632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1173,7 @@ GameObject:
   - component: {fileID: 1996856866}
   - component: {fileID: 1996856865}
   - component: {fileID: 1996856864}
+  - component: {fileID: 1996856867}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1208,19 +1209,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fca8c608ad95f74f8858597cfce47f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug_text: {fileID: 43275985}
   cam: {fileID: 573120702}
   invert_x: 0
   invert_y: 0
   invert_factor_x: 1
   invert_factor_y: 1
   sensitivity: 0.43
-  max_speed: 6
-  acceleration: 60
-  gravity: 20
-  stop_speed: 0.5
-  jump_impulse: 10
-  friction: 4
 --- !u!114 &1996856865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1264,8 +1258,8 @@ MonoBehaviour:
     m_ActionName: New action map/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1996856864}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 1996856867}
+        m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
         m_MethodName: GetMoveInput
         m_Mode: 0
         m_Arguments:
@@ -1280,8 +1274,8 @@ MonoBehaviour:
     m_ActionName: Player/Move [/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1996856864}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 1996856867}
+        m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
         m_MethodName: GetJumpInput
         m_Mode: 0
         m_Arguments:
@@ -1325,6 +1319,23 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1996856867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996856862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9bd2486508b48d40af749f2a5059354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debug_text: {fileID: 43275985}
+  character_controller: {fileID: 0}
+  player_velocity: {x: 0, y: 0, z: 0}
+  wish_dir: {x: 0, y: 0, z: 0}
+  jump_buton_pressed: 0
 --- !u!1 &2004027150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,8 +1435,8 @@ Transform:
   m_GameObject: {fileID: 2004027150}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.34382454, w: 0.939034}
-  m_LocalPosition: {x: 0.8246549, y: 0.6973839, z: -3.21}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.9954, y: 1.3198, z: 10.2979}
+  m_LocalScale: {x: 1, y: 4.2999, z: 8.0358}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 523336025}
